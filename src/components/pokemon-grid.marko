@@ -1,0 +1,36 @@
+import { getPokemon } from "../lib/pokemonApi";
+
+<await(getPokemon())>
+    <@then|pokemonList|>
+        <div class="pokemon-grid">
+            <for|pokemon| of=(pokemonList.results)>
+                <pokemon-card pokemon=pokemon/>
+            </for>
+        </div>
+    </@then>
+</await>
+
+
+<style>
+    :root {
+        --indian-red: #ed5463ff;
+        --light-gray: #ccced2ff;
+        --dark-gray: #4e505a;
+    }
+    h1 {
+        color: var(--light-gray);
+    }
+    .pokemon-grid {
+        padding-top: 1rem;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 2rem;
+        justify-content: center;
+        align-items: center;
+        scroll-snap-type: both mandatory;
+    }
+    img.logo {
+        width: 12em;
+    }
+</style>

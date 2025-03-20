@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta
+      name="description"
+      content="A simple Pokémon search app built with Marko.js"
+    >
+    <title>${$global.meta.pageTitle || "Marko"}</title>
+  </head>
+  <header class="header">
+    <div class="flex-between">
+      <a href="/">
+        <img src="./favicon.png" alt="Home" class="logo">
+      </a>
+    </div>
+  </header>
+  <body>
+    <${input.renderBody}/>
+  </body>
+</html>
+
+style {
+  :root {
+    --indian-red: #ed5463ff;
+    --light-gray: #ccced2ff;
+    --dark-gray: #4e505a;
+  }
+  html,
+  body {
+    font-family: system-ui;
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    background: var(--dark-gray);
+  }
+  code {
+    color: #fc0;
+  }
+  a {
+    color: #09c;
+  }
+  header {
+    background-color: var(--light-gray);
+    border-bottom: 3px solid var(--indian-red);
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    height: 3rem;
+  }
+  a {
+    color: var(--dark-gray);
+  }
+  .flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+  }
+  .logo {
+    margin-left: 3rem;
+    position: absolute;
+    max-height: 50px;
+    max-width: 50px;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+
+  .logo:hover {
+    /* todo: transition this to on-click */
+    animation: spin 1s ease-in-out;
+  }
+}

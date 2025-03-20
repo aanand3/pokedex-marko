@@ -1,0 +1,139 @@
+import { getPokemonDetails } from "../lib/pokemonApi";
+
+<if(input.pokemon.url)>
+    <await(getPokemonDetails(input.pokemon)) client-reorder>
+        <@placeholder>
+            <div class="pokemon-card skeleton-loader"/>
+        </@placeholder>
+        <@then|pokemon|>
+            <div class="pokemon-card">
+                <h2>${pokemon.name.toUpperCase()}</h2>
+                <img
+                    src=`${pokemon.sprites.front_default}`
+                    alt=`${pokemon.name}`
+                    class="pokemon-image"
+                >
+
+                <table class="pokemon-details">
+                    <tr>
+                        <th>Base Experience</th>
+                        <td>${pokemon.base_experience}</td>
+                    </tr>
+                    <tr>
+                        <th>Height</th>
+                        <td>${pokemon.height} decimeters</td>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td>${pokemon.weight} hectograms</td>
+                    </tr>
+
+                    <tr>
+                        <th>Abilities</th>
+                        <td>
+                            <ul>
+                                <for|ability| of=pokemon.abilities>
+                                    <li>
+                                        ${ability.ability.name}
+                                        <if(ability.is_hidden)>
+                                            (hidden)
+                                        </if>
+                                    </li>
+                                </for>
+                            </ul>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <th>Types</th>
+                        <td>
+                            <ul>
+                                <for|type| of=pokemon.types>
+                                    <li>${type.type.name}</li>
+                                </for>
+                            </ul>
+                        </td>
+                    </tr>
+                </table>
+                <table class="stats-table">
+                    <tr>
+                        <th>Stat</th>
+                        <th>Base Stat</th>
+                    </tr>
+                    <for|stat| of=pokemon.stats>
+                        <tr>
+                            <td>${stat.stat.name}</td>
+                            <td>${stat.base_stat}</td>
+                        </tr>
+                    </for>
+                </table>
+            </div>
+        </@then>
+    </await>
+</if>
+
+<style>
+    :root {
+        --indian-red: #ed5463ff;
+        --light-gray: #ccced2ff;
+        --dark-gray: #4e505a;
+    }
+
+    table {
+        width: 100%;
+        margin-top: 20px;
+        border-collapse: collapse;
+    }
+
+    th {
+        background-color: var(--indian-red);
+    }
+
+    th,
+    td {
+        padding: 10px;
+        border: 1px solid var(--dark-gray);
+        text-align: left;
+    }
+
+    .pokemon-card {
+        background-color: var(--light-gray);
+        padding: 20px;
+        border-radius: 2px;
+        text-align: center;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition:
+            transform 0.1s ease,
+            box-shadow 0.1s ease,
+            border-color 0.1s ease;
+        width: 20rem;
+        height: 50rem;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scroll-snap-align: start;
+    }
+
+    .pokemon-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        border: 2px solid var(--indian-red);
+    }
+
+    .pokemon-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .skeleton-loader {
+        animation: skeleton-loading 1s linear infinite alternate;
+    }
+
+    @keyframes skeleton-loading {
+        0% {
+            background-color: hsl(200, 20%, 80%);
+        }
+        100% {
+            background-color: hsl(200, 20%, 95%);
+        }
+    }
+</style>

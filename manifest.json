@@ -1,0 +1,16 @@
+{
+    "name": "Pokédex // Marko",
+    "short_name": "Pokédex",
+    "description": "A simple Pokémon search app built with Marko.js",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3498db",
+    "icons": [
+      {
+        "src": "/favicon.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
