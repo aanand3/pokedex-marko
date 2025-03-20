@@ -1,5 +1,11 @@
 # Thanks for checking out my Pokedex
 
+With this project, I was aiming for a slightly retro, tri-color feel that evokes the old days of Pokemon on the GameBoy Color. I wanted to keep the UI as simple as possible while mimicing the behaviors which were most salient in the old-school Pokemon games, like the spinning Pokeball and the sense of 'choosing' a team of Pokemon. 
+
+There's a lot of room for improvement, but it was fun to put this together. I definitely had a hard than expected time implementing search, since I couldn't figure out how to store/update state -- gave up on that because of the time limit. 
+
+Thanks for the fun, unique challenge! Would love to hear any feedback. 
+
 ### Todos: 
 - Debug snap-scrolling: https://css-tricks.com/practical-css-scroll-snapping/
 - Add search (I tried, but Marko was not having a good time storing state in a component which also fetches)
